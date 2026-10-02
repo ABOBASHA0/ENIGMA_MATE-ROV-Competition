@@ -77,8 +77,9 @@ Before running the software, make sure you have:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/ABOBASHA0/MateRov_Enigma.git
-cd MateRov_Enigma
+git clone https://github.com/ABOBASHA0/ENIGMA_MATE-ROV-Competition.git
+cd ENIGMA_MATE-ROV-Competition
+
 ```
 
 ### 2. Create a Virtual Environment
