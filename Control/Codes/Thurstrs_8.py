@@ -8,7 +8,7 @@ print("Every Thing Imported")
 MAX_US = 1750  # Upper That 1500 Will Move Forward
 MIN_US = 1250  # Lower That 1500 Will Move backward
 NEUTRAL = 1500  # It Will Stop Moving
-DEADZONE = 0 # It Will Ignore If The JoyStick Is Stick Drift
+DEADZONE = 0.1 # It Will Ignore If The JoyStick Is Stick Drift
 SPEED = 0  # It Will Increase By Moving The Right Joystick Forward
 ACCELERATION = 250 # That Is How Much Speed You Gain By Holding Forward # 
 
@@ -243,7 +243,7 @@ try:
 
     # Functionality #    
 
-        # Control Movement X|Z By Right Joystick
+        # Control Movement X|Z By Right Joystick #
         if Right_Joystick_X > DEADZONE and Right_Joystick_X > 0 :       # 1 Mean That I Move The Joystick Right #
             moving_right()
             print("Moving Right")
@@ -258,7 +258,7 @@ try:
             print("Moving Backward")
 
         # Control Movement Y By L1 | R1 #
-        if R1 == 1 :
+        elif R1 == 1 :
             moving_up()
             print("Moving Up")
         elif L1 == 1 :
@@ -266,7 +266,7 @@ try:
             print("Moving Down")
         
         # Control Rotation By Left Joystick        
-        if Left_Joystick_X > DEADZONE and Left_Joystick_X > 0 :
+        elif Left_Joystick_X > DEADZONE and Left_Joystick_X > 0 :
             rotate_right()
             print("rotate right")
         elif Left_Joystick_X < -DEADZONE and Left_Joystick_X < 0 :
