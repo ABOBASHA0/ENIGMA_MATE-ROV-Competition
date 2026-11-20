@@ -8,7 +8,7 @@ print("Every Thing Imported")
 MAX_US = 1750  # Upper That 1500 Will Move Forward
 MIN_US = 1250  # Lower That 1500 Will Move backward
 NEUTRAL = 1500  # It Will Stop Moving
-DEADZONE = 0.1 # It Will Ignore If The JoyStick Is Stick Drift
+DEADZONE = 0 # It Will Ignore If The JoyStick Is Stick Drift
 SPEED = 0  # It Will Increase By Moving The Right Joystick Forward
 ACCELERATION = 250 # That Is How Much Speed You Gain By Holding Forward # 
 
@@ -28,7 +28,7 @@ def clamp (US,MAX_US,MIN_US):
 
 def set_thruster(thrust_name, target_us):
     Safe_US = clamp(target_us, MAX_US, MIN_US)
-    set_thruster(Thrusts_List[thrust_name], Safe_US)
+    pca.set_pulse_us(Thrusts_List[thrust_name], Safe_US)
 
 # Pygame Start Up #
 pg.init()
@@ -50,15 +50,15 @@ def moving_forward():
     set_thruster("ULF", NEUTRAL + SPEED)
     set_thruster("DRF", NEUTRAL + SPEED)
     set_thruster("DLF", NEUTRAL + SPEED)
-    print("All Front Thrusts Moved Forwards")
+
     # Back Thrusts Move Backwards
     set_thruster("URB", NEUTRAL - SPEED)
     set_thruster("ULB", NEUTRAL - SPEED)
     set_thruster("DRB", NEUTRAL - SPEED)
     set_thruster("DLB", NEUTRAL - SPEED)
-    print("All Back Thrusts Moved Backwards")
+
     # Delay Time To Avoid Hardware Conflict  #
-    time.sleep(0.5)
+    time.sleep(0.05)
     
 
 def moving_backward():
@@ -67,15 +67,15 @@ def moving_backward():
     set_thruster("ULF", NEUTRAL - SPEED)
     set_thruster("DRF", NEUTRAL - SPEED)
     set_thruster("DLF", NEUTRAL - SPEED)
-    print("All Front Thrusts Moved Backwards")
+
     # Back Thrusts Move Forwards
     set_thruster("URB", NEUTRAL + SPEED)
     set_thruster("ULB", NEUTRAL + SPEED)
     set_thruster("DRB", NEUTRAL + SPEED)
     set_thruster("DLB", NEUTRAL + SPEED)
-    print("All Back Thrusts Moved Forwards")
+
     # Delay Time To Avoid Hardware Conflict  #
-    time.sleep(0.5)
+    time.sleep(0.05)
         
 def moving_left():
     # Left Thrusts Move Forwards #
@@ -83,15 +83,15 @@ def moving_left():
     set_thruster("ULB", NEUTRAL - SPEED)
     set_thruster("DLF", NEUTRAL - SPEED)
     set_thruster("DLB", NEUTRAL - SPEED)
-    print("All Left Thrusts Moved Forwards ")
+
     # Right Thrusts Move Backwards #
     set_thruster("URF", NEUTRAL + SPEED)
     set_thruster("URB", NEUTRAL + SPEED)
     set_thruster("DRF", NEUTRAL + SPEED)
     set_thruster("DRB", NEUTRAL + SPEED)
-    print("All Right Thrusts Moved Backwards")
+
     # Delay Time To Avoid Hardware Conflict  #
-    time.sleep(0.5)
+    time.sleep(0.05)
     
 def moving_right():
     # Left Thrusts Move Backwards #
@@ -99,15 +99,15 @@ def moving_right():
     set_thruster("ULB", NEUTRAL + SPEED)
     set_thruster("DLF", NEUTRAL + SPEED)
     set_thruster("DLB", NEUTRAL + SPEED)
-    print("All Left Thrusts Moved Backwards ")
+
     # Right Thrusts Move Forwards #
     set_thruster("URF", NEUTRAL - SPEED)
     set_thruster("URB", NEUTRAL - SPEED)
     set_thruster("DRF", NEUTRAL - SPEED)
     set_thruster("DRB", NEUTRAL - SPEED)  
-    print("All Right Thrusts Moved Forwards ")
+
     # Delay Time To Avoid Hardware Conflict  #
-    time.sleep(0.5)
+    time.sleep(0.05)
         
 def moving_up():
     # Down Thrusts Move Forwards #
@@ -115,15 +115,15 @@ def moving_up():
     set_thruster("DRB", NEUTRAL + SPEED)
     set_thruster("DLF", NEUTRAL + SPEED)
     set_thruster("DLB", NEUTRAL + SPEED)
-    print("All Down Thrusts Moved Forwards ")
+
     # Upper Thrusts Move Backwards  #
     set_thruster("URF", NEUTRAL - SPEED)
     set_thruster("URB", NEUTRAL - SPEED)
     set_thruster("ULF", NEUTRAL - SPEED)
     set_thruster("ULB", NEUTRAL - SPEED)
-    print("All Upper Thrusts Moved Backwards ")
+
     # Delay Time To Avoid Hardware Conflict  #
-    time.sleep(0.5)
+    time.sleep(0.05)
         
 def moving_down():
     # Down Thrusts Move Backwards  #
@@ -131,15 +131,15 @@ def moving_down():
     set_thruster("DRB", NEUTRAL - SPEED)
     set_thruster("DLF", NEUTRAL - SPEED)
     set_thruster("DLB", NEUTRAL - SPEED)
-    print("All Down Thrusts Moved Backwards ")
+
     # Upper Thrusts Move Forwards  #
     set_thruster("URF", NEUTRAL + SPEED)
     set_thruster("URB", NEUTRAL + SPEED)
     set_thruster("ULF", NEUTRAL + SPEED)
     set_thruster("ULB", NEUTRAL + SPEED)
-    print("All Upper Thrusts Moved Forwards ")
+
     # Delay Time To Avoid Hardware Conflict  #
-    time.sleep(0.5)
+    time.sleep(0.05)
 
 def rotate_left():
     # Moving Forward Without AntiForce To Left #
@@ -147,16 +147,15 @@ def rotate_left():
     set_thruster("DLB", NEUTRAL + SPEED)
     set_thruster("URF", NEUTRAL + SPEED)
     set_thruster("DRF", NEUTRAL + SPEED)
-    print("Moving Forward Without AntiForce To Left")
-    
+   
     # Moving Backward With Forward Moving To Left #
     set_thruster("URB", NEUTRAL - SPEED)
     set_thruster("DRB", NEUTRAL - SPEED)
     set_thruster("ULF", NEUTRAL - SPEED)
     set_thruster("DLF", NEUTRAL - SPEED)
-    print("Moving Backward With Forward Moving To Left")
+
     # Delay Time To Avoid Hardware Conflict  #
-    time.sleep(0.5)
+    time.sleep(0.05)
         
 def rotate_right():
     # Moving Forward Without AntiForce To Right #
@@ -164,16 +163,15 @@ def rotate_right():
     set_thruster("DLB", NEUTRAL - SPEED)
     set_thruster("URF", NEUTRAL - SPEED)
     set_thruster("DRF", NEUTRAL - SPEED)
-    print("Moving Forward Without AntiForce To Right")
-    
+ 
     # Moving Backward With Forward Moving To Right #
     set_thruster("URB", NEUTRAL + SPEED)
     set_thruster("DRB", NEUTRAL + SPEED)
     set_thruster("ULF", NEUTRAL + SPEED)
     set_thruster("DLF", NEUTRAL + SPEED)
-    print("Moving Backward With Forward Moving To Right")
+
     # Delay Time To Avoid Hardware Conflict  #
-    time.sleep(0.5)
+    time.sleep(0.05)
     
 def rotate_upward():
     # Moving Forward Without AntiForce To Upward #
@@ -181,16 +179,15 @@ def rotate_upward():
     set_thruster("DLF", NEUTRAL + SPEED)
     set_thruster("URB", NEUTRAL + SPEED)
     set_thruster("ULB", NEUTRAL + SPEED)
-    print("Moving Forward Without AntiForce To Upward")
-    
+
     # Moving Backward With Forward Moving To Upward #
     set_thruster("URF", NEUTRAL - SPEED)
     set_thruster("ULF", NEUTRAL - SPEED)
     set_thruster("DRB", NEUTRAL - SPEED)
     set_thruster("DLB", NEUTRAL - SPEED)
-    print("Moving Backward With Forward Moving To Upward")
+
     # Delay Time To Avoid Hardware Conflict  #
-    time.sleep(0.5)
+    time.sleep(0.05)
     
 def rotate_backward():
     # Moving Forward Without AntiForce To Backward #
@@ -198,17 +195,15 @@ def rotate_backward():
     set_thruster("ULF", NEUTRAL + SPEED)
     set_thruster("DRB", NEUTRAL + SPEED)
     set_thruster("DLB", NEUTRAL + SPEED)
-
-    print("Moving Forward Without AntiForce To Backward")
     
     # Moving Backward With Forward Moving To Backward #
     set_thruster("DRF", NEUTRAL - SPEED)
     set_thruster("DLF", NEUTRAL - SPEED)
     set_thruster("URB", NEUTRAL - SPEED)
     set_thruster("ULB", NEUTRAL - SPEED)
-    print("Moving Backward With Forward Moving To Backward")
+
     # Delay Time To Avoid Hardware Conflict  #
-    time.sleep(0.5)
+    time.sleep(0.05)
     
 def stopping_moving():
     for Ch in Thrusts_List.values():
@@ -229,17 +224,18 @@ try:
         Left_Joystick_Y = Controller.get_axis(1)
 
     # Special Trigger
-        Right_Joystick_R3 = Controller.get_button(9)
-        Left_Joystick_L3 = Controller.get_button(8)
+        R1 = Controller.get_button(11)
+        L1 = Controller.get_button(10)
     
     # Speed Controller #
-        Stick_Power = max(abs(Right_Joystick_X),abs(Right_Joystick_Y),)
+        Stick_Power = max(abs(Right_Joystick_X),abs(Right_Joystick_Y),abs(Left_Joystick_X),abs(Left_Joystick_Y))
 
-        if Right_Joystick_R3 == 1 or Left_Joystick_L3 == 1:
+        if R1 == 1 or L1 == 1:
             SPEED = 250  # Full speed when pressing R3 or L3 to move up/down
         elif Stick_Power > DEADZONE:
-            SPEED = int(Stick_Power * ACCELERATION)
+            SPEED = round(Stick_Power * ACCELERATION)
             SPEED = clamp(SPEED, 250, 0)
+            
             print(f"Speed is {SPEED}")
         else:
             SPEED = 0
@@ -250,30 +246,41 @@ try:
         # Control Movement X|Z By Right Joystick
         if Right_Joystick_X > DEADZONE and Right_Joystick_X > 0 :       # 1 Mean That I Move The Joystick Right #
             moving_right()
+            print("Moving Right")
         elif Right_Joystick_X < -DEADZONE and Right_Joystick_X < 0 :    # -1 Mean That I Move The Joystick Left #
             moving_left()
+            print("Moving Left")
         elif Right_Joystick_Y < -DEADZONE and Right_Joystick_Y < 0 :    # -1 Mean That I Move The Joystick Up #
             moving_forward()
+            print("Moving Forward")
         elif Right_Joystick_Y > DEADZONE and Right_Joystick_Y > 0 :     # 1 Mean That I Move The Joystick Down #
             moving_backward()
+            print("Moving Backward")
 
         # Control Movement Y By L3 | R3 #
-        if Right_Joystick_R3 == 1 :
+        if R1 == 1 :
             moving_up()
-        elif Left_Joystick_L3 == 1 :
+            print("Moving Up")
+        elif L1 == 1 :
             moving_down()
+            print("Moving Down")
         
         # Control Rotation By Left Joystick        
         if Left_Joystick_X > DEADZONE and Left_Joystick_X > 0 :
             rotate_right()
+            print("rotate right")
         elif Left_Joystick_X < -DEADZONE and Left_Joystick_X < 0 :
             rotate_left()
+            print("rotate Left")
         elif Left_Joystick_Y < -DEADZONE and Left_Joystick_Y < 0 :
             rotate_upward()
+            print("rotate Upward")
         elif Left_Joystick_Y > DEADZONE and Left_Joystick_Y > 0 :
             rotate_backward()
+            print("rotate Backward")
 
-        time.sleep(0.5)
+except KeyboardInterrupt:
+    time.sleep(0.05)
         
 finally:
     stopping_moving()
