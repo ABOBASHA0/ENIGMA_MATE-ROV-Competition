@@ -231,7 +231,7 @@ try:
         Stick_Power = max(abs(Right_Joystick_X),abs(Right_Joystick_Y),abs(Left_Joystick_X),abs(Left_Joystick_Y))
 
         if R1 == 1 or L1 == 1:
-            SPEED = 250  # Full speed when pressing R3 or L3 to move up/down
+            SPEED = 250  # Full speed when pressing R1 or L1 to move up/down
         elif Stick_Power > DEADZONE:
             SPEED = round(Stick_Power * ACCELERATION)
             SPEED = clamp(SPEED, 250, 0)
@@ -257,7 +257,7 @@ try:
             moving_backward()
             print("Moving Backward")
 
-        # Control Movement Y By L3 | R3 #
+        # Control Movement Y By L1 | R1 #
         if R1 == 1 :
             moving_up()
             print("Moving Up")
