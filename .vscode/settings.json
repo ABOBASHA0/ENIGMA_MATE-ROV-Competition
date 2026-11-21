@@ -4,5 +4,9 @@
         "DEADZONE",
         "DGRAM",
         "Jetson"
-    ]
+    ],
+    "editor.tokenColorCustomizations": {
+        "comments": "",
+        "textMateRules": []
+    }
 }
