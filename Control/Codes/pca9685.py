@@ -8,7 +8,7 @@ else:
         def __init__(self, bus=1): pass
         def write_byte_data(self, addr, reg, val): pass
         def write_i2c_block_data(self, addr, reg, data):
-            print(f"[fake i2c] addr={hex(addr)} reg={hex(reg)} data={data}")
+            pass
         def close(self): pass
 
     class smbus:

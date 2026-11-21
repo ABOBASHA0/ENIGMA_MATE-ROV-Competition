@@ -3,7 +3,8 @@
         "Bitys",
         "DEADZONE",
         "DGRAM",
-        "Jetson"
+        "Jetson",
+        "smbus"
     ],
     "editor.tokenColorCustomizations": {
         "comments": "",

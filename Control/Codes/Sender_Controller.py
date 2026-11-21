@@ -100,8 +100,9 @@ try:
             print(f"Rotate {Lift}")
         
         # Sender Data #
-        Packet = {SPEED:"speed", Move:"Move", Lift:"Lift", Rotation:"Rotation" }
+        Packet = {SPEED:"Speed", Move:"Move", Lift:"Lift", Rotation:"Rotation" }
         Sock.sendto(json.dump(Packet).encode(), Jetson)
         time.sleep(0.05)
+
 except KeyboardInterrupt:
     print("Stopped The Sender")
