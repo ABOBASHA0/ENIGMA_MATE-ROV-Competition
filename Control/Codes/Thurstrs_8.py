@@ -121,6 +121,7 @@ def moving_up():
     set_thruster("URB", NEUTRAL - SPEED)
     set_thruster("ULF", NEUTRAL - SPEED)
     set_thruster("ULB", NEUTRAL - SPEED)
+    print("Moving Up")
 
     # Delay Time To Avoid Hardware Conflict  #
     time.sleep(0.05)
@@ -137,6 +138,7 @@ def moving_down():
     set_thruster("URB", NEUTRAL + SPEED)
     set_thruster("ULF", NEUTRAL + SPEED)
     set_thruster("ULB", NEUTRAL + SPEED)
+    print("Moving Down")
 
     # Delay Time To Avoid Hardware Conflict  #
     time.sleep(0.05)
@@ -224,8 +226,8 @@ try:
         Left_Joystick_Y = Controller.get_axis(1)
 
     # Special Trigger
-        R1 = Controller.get_button(11)
-        L1 = Controller.get_button(10)
+        R1 = Controller.get_button(5)
+        L1 = Controller.get_button(4)
     
     # Speed Controller #
         Stick_Power = max(abs(Right_Joystick_X),abs(Right_Joystick_Y),abs(Left_Joystick_X),abs(Left_Joystick_Y))
